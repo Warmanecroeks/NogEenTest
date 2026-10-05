@@ -104,8 +104,10 @@ static ColorState sampleScreen(POINT* found) {
     }
 
     int R = detector.s.searchRadius;
-    int left = std::max(0, c.x - R), top = std::max(0, c.y - R);
-    int w = std::min(sw - left, 2*R + 1), h = std::min(sh - top, 2*R + 1);
+  int left = std::max(0, static_cast<int>(c.x) - R);
+int top = std::max(0, static_cast<int>(c.y) - R);
+int w = std::min(static_cast<int>(sw) - left, 2 * R + 1);
+int h = std::min(static_cast<int>(sh) - top, 2 * R + 1);
     if (w <= 0 || h <= 0) return ColorState::Unknown;
 
     HDC screen = GetDC(nullptr);
